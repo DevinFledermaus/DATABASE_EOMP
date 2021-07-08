@@ -6,7 +6,7 @@ import mysql.connector
 root = Tk()
 root.geometry("700x500")
 root.resizable(False, False)
-root.title("Login at LifeChoices")
+root.title("Login as Admin")
 root.config(bg="blue")
 
 
@@ -22,8 +22,8 @@ def enter():
 
         mycursor = mydb.cursor()
 
-        sql = "INSERT INTO Log( Name, Surname) \n VALUES( %s, %s)"
-        val = (name, surname)
+        sql = "INSERT INTO Login( Name, Surname, Id_number, Phone_number) \n VALUES( %s, %s, %s, %s)"
+        val = ("Nuts", "Deez", "5746981230123", "0741258954")
         exec = mycursor.execute(sql, val)
 
         mydb.commit()
