@@ -12,23 +12,12 @@ root.config(bg="blue")
 
 def enter():
     name = ent1.get()
-    surname = ent2.get()
-    if name == "" or surname == "":
+    password = ent2.get()
+    if name == "" or password == "":
         messagebox.showerror("ERROR!!", "Please Enter Name AND Surname")
-    elif not name.isalpha() or surname.isalpha():
-        messagebox.showerror("ERROR!!", "Please Enter Name and Surname Correctly")
-    else:
-        mydb = mysql.connector.connect(user='lifechoices', password='@Lifechoices1234', host='127.0.0.1', database='Lifechoices_Online', auth_plugin='mysql_native_password')
-
-        mycursor = mydb.cursor()
-
-        sql = "INSERT INTO Login( Name, Surname, Id_number, Phone_number) \n VALUES( %s, %s, %s, %s)"
-        val = ("Nuts", "Deez", "5746981230123", "0741258954")
-        exec = mycursor.execute(sql, val)
-
-        mydb.commit()
+    elif name == "Thomas Wayne" and password == "1704":
         root.destroy()
-        import sign_out
+        import Admin_log
 
 
 def clear():
@@ -43,9 +32,9 @@ def exit_btn():
 
 
 # LABELS
-lbl1 = Label(root, text="Please enter Your Name:", bg="blue", font=('Arial', 15))
+lbl1 = Label(root, text="Please enter Your Admin Name:", bg="blue", font=('Arial', 15))
 lbl1.place(x=50, y=100)
-lbl2 = Label(root, text="Please enter Your Surname:", bg="blue", font=('Arial', 15))
+lbl2 = Label(root, text="Please enter Admin Password:", bg="blue", font=('Arial', 15))
 lbl2.place(x=350, y=100)
 
 

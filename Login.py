@@ -9,21 +9,43 @@ root.resizable(False, False)
 root.title("Login at LifeChoices")
 root.config(bg="blue")
 
+mydb = mysql.connector.connect(user='lifechoices', password='@Lifechoices1234', host='127.0.0.1', database='Lifechoices_Online', auth_plugin='mysql_native_password')
+mycursor = mydb.cursor()
+
+
+def verify():
+    query = 'Select *  FROM  Login'
+    mycursor.execute(query)
+    valid = False
+    for x in mycursor:
+        if x[1] == ent1.get() and x[3] == ent2.get():
+            valid = True
+            que = 'INSERT INTO Log() \n VALUES();'
+            mycursor.execute(que)
+    if not valid:
+        messagebox.showerror("ERROR", "User does not exist")
+    elif valid:
+        messagebox.showinfo("Access Granted", "You have successfully logged in")
+
 
 def enter():
     name = ent1.get()
     surname = ent2.get()
     if name == "" or surname == "":
         messagebox.showerror("ERROR!!", "Please Enter Name AND Surname")
-    elif not name.isalpha() or surname.isalpha():
-        messagebox.showerror("ERROR!!", "Please Enter Name and Surname Correctly")
     else:
-        mydb = mysql.connector.connect(user='lifechoices', password='@Lifechoices1234', host='127.0.0.1', database='Lifechoices_Online', auth_plugin='mysql_native_password')
+        # mydb = mysql.connector.connect(user='lifechoices', password='@Lifechoices1234', host='127.0.0.1', database='Lifechoices_Online', auth_plugin='mysql_native_password')
+        #
+        # mycursor = mydb.cursor()
 
-        mycursor = mydb.cursor()
+        data = "Select * from Login"
+        base = mycursor.execute(data)
+        login_id = 0
+        for x in mycursor:
+            login_id = x[0]
 
-        sql = "INSERT INTO Log( Name, Surname) \n VALUES( %s, %s)"
-        val = (name, surname)
+        sql = "INSERT INTO Log( Name, Surname, UserID) \n VALUES( %s, %s, %s)"
+        val = (name, surname, login_id)
         exec = mycursor.execute(sql, val)
 
         mydb.commit()

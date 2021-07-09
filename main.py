@@ -18,9 +18,12 @@ def register():
     import Register
 
 
-def admin():
+def admin(event):
     root.destroy()
     import Admin_login
+
+
+root.bind("<Control_L><a>", admin)
 
 
 # Image
@@ -32,8 +35,6 @@ btn = Button(root, text="Login", width=10, bg="white", command=login, borderwidt
 btn.place(x=190, y=300)
 btn2 = Button(root, text="Register", width=10, bg="white", command=register, borderwidth=5)
 btn2.place(x=380, y=300)
-btn3 = Button(root, text="Admin", width=12, bg="black", fg="white", command=admin, borderwidth=5)
-btn3.place(x=278, y=380)
 
 
 root.mainloop()

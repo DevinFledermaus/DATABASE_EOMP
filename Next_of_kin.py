@@ -17,13 +17,21 @@ def register():
     kin_phone_number = ent3.get()
     if kin_name == "" or kin_surname == "" or kin_phone_number == "":
         messagebox.showerror("ERROR", "Please complete all your details")
+    elif len(kin_phone_number) > 10 or len(kin_phone_number) < 10:
+        messagebox.showerror("ERROR", "Phone contains 10 numbers")
     else:
         mydb = mysql.connector.connect(user='lifechoices', password='@Lifechoices1234', host='127.0.0.1', database='Lifechoices_Online', auth_plugin='mysql_native_password')
 
         mycursor = mydb.cursor()
 
-        sql = "INSERT INTO Kin( Name, Surname, Phone_number) \n VALUES( %s, %s, %s)"
-        val = (kin_name, kin_surname, kin_phone_number)
+        data = "Select * from Login"
+        base = mycursor.execute(data)
+        login_id = 0
+        for x in mycursor:
+            login_id = x[0]
+
+        sql = "INSERT INTO Kin( Name, Surname, Phone_number, User_id) \n VALUES( %s, %s, %s, %s)"
+        val = (kin_name, kin_surname, kin_phone_number, login_id)
         exec = mycursor.execute(sql, val)
 
         mydb.commit()
@@ -32,8 +40,13 @@ def register():
         mycursor.execute('Select * from Kin')
         messagebox.showinfo("SUCCESS", "New User's Kin Added")
 
-        root.destroy()
-        import sign_out
+        msg_box = messagebox.askquestion("Registered", "Do you want to login?")
+        if msg_box == "yes":
+            root.destroy()
+            import sign_out
+        else:
+            root.destroy()
+            import main
 
 
 def clear():

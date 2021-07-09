@@ -19,14 +19,10 @@ def register():
     # Functionality
     if name == "" or surname == "" or id_no == "" or phone_no == "":
         messagebox.showerror("ERROR", "Please complete all your details")
-    # elif not name.isalpha() or not surname.isalpha():
-    #     messagebox.showerror("ERROR", "Names do not contain letters")
-    # elif id_no.isdigits() or phone_no.isdigits():
-    #     messagebox.showerror("ERROR", "ID and Phone numbers only contain numbers")
-    # elif id_no > 13:
-    #     messagebox.showerror("ERROR", "ID number must contain 13 numbers")
-    # elif phone_no > 10:
-    #     messagebox.showerror("ERROR", "Phone number must contain 10 numbers")
+    elif len(id_no) > 13 or len(id_no) < 13:
+        messagebox.showerror("ERROR", "ID number must contain 13 numbers")
+    elif len(phone_no) > 10 or len(phone_no) > 10:
+        messagebox.showerror("ERROR", "Phone number must contain 10 numbers")
     else:
         mydb = mysql.connector.connect(user='lifechoices', password='@Lifechoices1234', host='127.0.0.1', database='Lifechoices_Online', auth_plugin='mysql_native_password')
 
