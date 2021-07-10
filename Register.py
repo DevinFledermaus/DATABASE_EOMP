@@ -28,8 +28,8 @@ def register():
 
         mycursor = mydb.cursor()
 
-        sql = "INSERT INTO Login( Name, Surname, Id_number, Phone_number) \n VALUES( %s, %s, %s, %s)"
-        val = (name, surname, id_no, phone_no)
+        sql = "INSERT INTO Login( id, Name, Surname, Id_number, Phone_number) \n VALUES( %s, %s, %s, %s, %s)"
+        val = (1, name, surname, id_no, phone_no)
         exec = mycursor.execute(sql, val)
 
         mydb.commit()
