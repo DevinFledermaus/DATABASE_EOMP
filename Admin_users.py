@@ -61,10 +61,6 @@ window.pack(pady=20)
 # Buttons
 btn = Button(root, text="Admin Log", bg="black", fg="white", width=10, borderwidth=5, command=enter)
 btn.place(x=200, y=400)
-addbtn = Button(root, text="INSERT", width=10, borderwidth=5)
-addbtn.place(x=200, y=300)
-dltbtn = Button(root, text="DELETE", width=10, borderwidth=5)
-dltbtn.place(x=400, y=300)
 extbtn = Button(root, text="Exit", bg="red", width=10, borderwidth=5, command=exitbtn)
 extbtn.place(x=400, y=400)
 
